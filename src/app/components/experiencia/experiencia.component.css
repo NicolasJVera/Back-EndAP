@@ -1,0 +1,24 @@
+/* =====================
+  Experiencia
+===================== */
+
+.exp-header {
+    padding-top: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .exp_content {
+    margin-top: 1rem;
+    margin-left: 2rem;
+  }
+  
+  .bienes-raices:hover {
+    box-shadow: 5px 50px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3%);
+  }
+  
+  .card:hover {
+    box-shadow: 5px 50px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3%);
+  }

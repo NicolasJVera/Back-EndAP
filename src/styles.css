@@ -1,0 +1,75 @@
+/* =====================
+  General Styles
+===================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Unica One', cursive;
+    font-size: 1rem;
+    line-height: 1.5;
+    list-style: none;
+    
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.3rem;
+    margin: 0;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  
+  p {
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+  
+  small {
+    line-height: 1;
+  }
+  
+  .m-item {
+    color: #000;
+    list-style: none;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+  }
+  
+  a {
+    color: #000;
+    list-style: none;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+  }
+  
+  a:focus,
+  a:hover {
+    color: #000;
+  }
+  
+  hr {
+    border-color: #000000;
+    margin: 80px 0 60px;
+  }
+  

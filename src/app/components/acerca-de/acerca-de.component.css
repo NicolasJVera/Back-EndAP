@@ -1,0 +1,13 @@
+/* =====================
+  Acerca De
+===================== */
+
+.about__tittle  {
+    padding-top: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about__text {
+    margin-left: 5rem;
+  }

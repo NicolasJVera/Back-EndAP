@@ -1,0 +1,68 @@
+/* =====================
+    Login
+  ===================== */
+  .body-login {
+     background-image: url(../../../assets/img/login_bg.png); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  
+  .login {
+    height: 75vh;
+  }
+  
+  .footer-login {
+    width: 100%;
+    height: 10%;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
+  }
+  
+  #modal-content {
+    border-radius: 32px;
+    border: none;
+    padding: 30px;
+    margin-top: 13%;
+  }
+  
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    outline: 0;
+  }
+  
+  .modal-text {
+    display: flex;
+  }
+  
+  .list-group {
+    --bs-list-group-bg: rgba(255, 255, 255, 0.034);
+  }
+  
+  nav.vertical {
+    float: left;
+    margin-left: -1rem;
+    margin-top: 2rem;
+    padding-top: 1rem 0;
+  }
+  
+  li.vertical {
+    display: block;
+    margin: 0;
+    writing-mode: vertical;
+    padding: 1.6rem 0;
+    padding-left: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  a, a:hover {
+    text-decoration: none;
+  }
