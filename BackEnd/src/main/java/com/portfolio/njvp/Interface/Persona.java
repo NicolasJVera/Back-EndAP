@@ -1,5 +1,5 @@
 
-package com.portfolio.njvp.model;
+package com.portfolio.njvp.Interface;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

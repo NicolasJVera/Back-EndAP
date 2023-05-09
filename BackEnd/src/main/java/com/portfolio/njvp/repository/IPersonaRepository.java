@@ -1,6 +1,6 @@
-package com.portfolio.njvp.repository;
+package com.portfolio.njvp.Repository;
 
-import com.portfolio.njvp.model.Persona;
+import com.portfolio.njvp.Interface.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

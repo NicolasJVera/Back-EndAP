@@ -1,10 +1,10 @@
-package com.portfolio.njvp.service;
+package com.portfolio.njvp.Service;
 
-import com.portfolio.njvp.model.Persona;
+import com.portfolio.njvp.Interface.Persona;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.portfolio.njvp.repository.IPersonaRepository;
+import com.portfolio.njvp.Repository.IPersonaRepository;
 
 @Service
 public class PersonaService implements IPersonaService {

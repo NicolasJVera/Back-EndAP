@@ -1,7 +1,7 @@
-package com.portfolio.njvp.controller;
+package com.portfolio.njvp.Controller;
 
-import com.portfolio.njvp.model.Persona;
-import com.portfolio.njvp.service.IPersonaService;
+import com.portfolio.njvp.Interface.Persona;
+import com.portfolio.njvp.Service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
