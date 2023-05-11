@@ -20,6 +20,8 @@ import { IndexComponent } from './components/index/index.component';
 import { HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { interceptorProvider } from './service/interceptor-service';
+import { NewExperienciaComponent } from './components/experiencia/new-experiencia.component';
+import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { interceptorProvider } from './service/interceptor-service';
     RegistroComponent,
     DashboardComponent,
     IndexComponent,
+    NewExperienciaComponent,
+    EditExperienciaComponent
   ],
   imports: [
     BrowserModule,

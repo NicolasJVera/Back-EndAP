@@ -1,19 +1,30 @@
 <div id="exp" class="mt-5 container">
     <div class="d-grid align-items-center rounded bg-gradient p-5">
-            <h3 class="text-white m-0 p-0">Experiencia</h3>
-            <br>
-            <div class="row">
-                <div class="col-sm-2 col-md-2 col-lg-2 mb-5">
-                    <img src="../../../assets/img/bienesraices.jpg" alt="bienes raices" class="img-thumbnail bienes-raices">
-                </div>
-                <div class="col-sm-10 col-md-10 col-lg-10">
-                    <h5 class="text-white m-0 p-0">Bienes Raices</h5>
-                    <br>
-                    <p class="text-white m-0 p-0">Estoy Llevando a cabo el relevamiento, modelado de datos, modelo ambiental y de comportamiento y diseñando la interfaz <br>
-                        <i class="text-muted"> Actualidad</i>
-                    </p>
-                </div>
-                <a name="educacion"></a>
-            </div>
+        <h3 class="text-white m-0 p-0">Experiencia Laboral</h3>
+        <div class="col-lg-2">
+            <button type="button" class="btn btn-dark mt-3" routerLink="/nuevaexp" *ngIf="isLogged">
+                Nueva Experiencia
+            </button>
+        </div>
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let Experiencia of expe">
+                    <td>
+                        <h3>{{Experiencia.nombreE}}</h3>
+                    </td>
+                    <td>
+                        {{Experiencia.descripcionE}}
+                    </td>
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-light" routerLink="/editexp/{{Experiencia.id}}">
+                            <i class="bi bi-pencil-fill"></i>EDITAR</button>
+                    </td>
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-danger" (click)="delete(Experiencia.id)">
+                            <i class="bi bi-trash-fill"></i> BORRAR</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
