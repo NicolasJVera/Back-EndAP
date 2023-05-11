@@ -1,9 +1,32 @@
 <div id="educacion" class="mt-5 container">
     <div class="d-grid align-items-center rounded bg-gradient p-3">
-        <div>
             <h3 class="text-white m-0 p-0">Educación</h3>
-            <br>
-            <div class="row">
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-dark mt-3" routerLink="/nuevaedu" *ngIf="isLogged">
+                    Agregar Educacion
+                </button>
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr *ngFor="let Educacion of educacion">
+                        <td>
+                            <h3>{{Educacion.nombreE}}</h3>
+                        </td>
+                        <td>
+                            {{Educacion.descripcionE}}
+                        </td>
+                        <td *ngIf="isLogged">
+                            <button class="btn btn-light" routerLink="/editedu/{{Educacion.id}}">
+                                <i class="bi bi-pencil-fill"></i>EDITAR</button>
+                        </td>
+                        <td *ngIf="isLogged">
+                            <button class="btn btn-danger" (click)="delete(Educacion.id)">
+                                <i class="bi bi-trash-fill"></i> BORRAR</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div class="row">
                 <div class="col-sm-2 col-md-2 col-lg-2 mb-3">
                     <img src="../../../assets/img/logos_coderhouse.png" alt="coderhouse" class="img-thumbnail" style="width: 100px;">
                 </div>
@@ -16,7 +39,6 @@
                     </p>
                 </div>
             </div>
-            <br>
             <div class="row">
                 <div class="col-sm-2 col-md-2 col-lg-2 mb-3">
                     <img src="../../../assets/img/arg-programa.png" alt="argentina programa" class="img-thumbnail" style="width: 100px;">
@@ -31,7 +53,6 @@
                     </p>
                 </div>
             </div>
-            <br>
             <div class="row">
                 <div class="col-sm-2 mb-3">
                     <img src="../../../assets/img/Udemy_logo.svg.png" alt="Udemy" class="img-thumbnail" style="width: 100px;">
@@ -45,7 +66,6 @@
                     </p>
                 </div>
                 <a name="hard"></a>
-            </div>
-        </div>
+            </div> -->
     </div>
 </div>
