@@ -2,7 +2,7 @@
 package com.portfolio.njvp.service;
 
 import com.portfolio.njvp.Interface.Educacion;
-import com.portfolio.njvp.repository.REducacion;
+import com.portfolio.njvp.Repository.REducacion;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;

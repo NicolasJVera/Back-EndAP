@@ -1,4 +1,4 @@
-package com.portfolio.njvp.Controller;
+package com.portfolio.njvp.controller;
 
 import com.portfolio.njvp.Interface.Persona;
 import com.portfolio.njvp.Service.IPersonaService;

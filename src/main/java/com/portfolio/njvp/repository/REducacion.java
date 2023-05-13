@@ -1,4 +1,4 @@
-package com.portfolio.njvp.repository;
+package com.portfolio.njvp.Repository;
 
 import com.portfolio.njvp.Interface.Educacion;
 import java.util.Optional;
