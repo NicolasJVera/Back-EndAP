@@ -2,8 +2,11 @@ C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Service
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Controller\Controller.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Controller\CExperiencia.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Service\UsuarioService.java
+C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Interface\hys.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Controller\Mensaje.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Repository\RExperiencia.java
+C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Dto\DtoHys.java
+C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Service\Shys.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Repository\IRolRepository.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\jwt\JwtTokenFilter.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\jwt\JwtEntryPoint.java
@@ -12,6 +15,7 @@ C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Securit
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Dto\NuevoUsuario.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Controller\CEducacion.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Repository\IUsuarioRepository.java
+C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Controller\CHys.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Interface\Educacion.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Dto\DtoEducacion.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Enums\Entity\Usuario.java
@@ -27,6 +31,7 @@ C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Interfa
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Service\UserDetailsImpl.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\NjvpApplication.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Enums\Entity\Rol.java
+C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Repository\Rhys.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\jwt\JwtProvider.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Dto\DtoExperiencia.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Service\PersonaService.java
