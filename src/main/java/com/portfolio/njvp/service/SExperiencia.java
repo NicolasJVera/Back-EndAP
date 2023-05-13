@@ -1,6 +1,6 @@
 package com.portfolio.njvp.service;
 
-import com.portfolio.njvp.Interface.Experiencia;
+import com.portfolio.njvp.Interfaces.Experiencia;
 import com.portfolio.njvp.Repository.RExperiencia;
 import java.util.List;
 import java.util.Optional;

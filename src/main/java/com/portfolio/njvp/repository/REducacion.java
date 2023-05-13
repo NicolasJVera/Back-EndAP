@@ -1,6 +1,6 @@
 package com.portfolio.njvp.Repository;
 
-import com.portfolio.njvp.Interface.Educacion;
+import com.portfolio.njvp.Interfaces.Educacion;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

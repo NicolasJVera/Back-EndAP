@@ -1,7 +1,7 @@
 
 package com.portfolio.njvp.service;
 
-import com.portfolio.njvp.Interface.Educacion;
+import com.portfolio.njvp.Interfaces.Educacion;
 import com.portfolio.njvp.Repository.REducacion;
 import java.util.List;
 import java.util.Optional;

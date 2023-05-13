@@ -1,7 +1,7 @@
 package com.portfolio.njvp.controller;
 
 import com.portfolio.njvp.Dto.DtoExperiencia;
-import com.portfolio.njvp.Interface.Experiencia;
+import com.portfolio.njvp.Interfaces.Experiencia;
 import com.portfolio.njvp.Security.Controller.Mensaje;
 import com.portfolio.njvp.service.SExperiencia;
 import java.util.List;

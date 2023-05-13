@@ -1,6 +1,6 @@
 package com.portfolio.njvp.service;
 
-import com.portfolio.njvp.Interface.Persona;
+import com.portfolio.njvp.Interfaces.Persona;
 import java.util.List;
 
 

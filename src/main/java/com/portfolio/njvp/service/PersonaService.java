@@ -1,6 +1,6 @@
 package com.portfolio.njvp.service;
 
-import com.portfolio.njvp.Interface.Persona;
+import com.portfolio.njvp.Interfaces.Persona;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.portfolio.njvp.controller;
 
 import com.portfolio.njvp.Dto.DtoEducacion;
-import com.portfolio.njvp.Interface.Educacion;
+import com.portfolio.njvp.Interfaces.Educacion;
 import com.portfolio.njvp.Security.Controller.Mensaje;
 import com.portfolio.njvp.service.SEducacion;
 import java.util.List;
