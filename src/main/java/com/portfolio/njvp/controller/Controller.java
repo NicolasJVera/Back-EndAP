@@ -1,7 +1,7 @@
 package com.portfolio.njvp.controller;
 
 import com.portfolio.njvp.Interface.Persona;
-import com.portfolio.njvp.Service.IPersonaService;
+import com.portfolio.njvp.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
