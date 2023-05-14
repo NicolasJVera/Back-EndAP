@@ -1,4 +1,3 @@
-C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Service\IPersonaService.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Controller\Controller.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Controller\CExperiencia.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Service\UsuarioService.java
@@ -20,6 +19,7 @@ C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Interfa
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Dto\DtoEducacion.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Enums\Entity\Usuario.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\MainSecurity.java
+C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Dto\DtoPersona.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Repository\REducacion.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Security\Enums\RolNombre.java
 C:\Users\Pc\Desktop\ArgPrograma\BackEnd\src\main\java\com\portfolio\njvp\Interface\Experiencia.java

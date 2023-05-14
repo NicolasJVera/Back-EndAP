@@ -2,7 +2,6 @@ com\portfolio\njvp\NjvpApplication.class
 com\portfolio\njvp\Security\Enums\Entity\Usuario.class
 com\portfolio\njvp\Interface\hys.class
 com\portfolio\njvp\Security\Service\UserDetailsImpl.class
-com\portfolio\njvp\Service\IPersonaService.class
 com\portfolio\njvp\Security\Dto\JwtDto.class
 com\portfolio\njvp\Security\jwt\JwtEntryPoint.class
 com\portfolio\njvp\Repository\Rhys.class
@@ -12,6 +11,7 @@ com\portfolio\njvp\Security\Enums\Entity\UsuarioPrincipal.class
 com\portfolio\njvp\Interface\Educacion.class
 com\portfolio\njvp\Repository\REducacion.class
 com\portfolio\njvp\Service\Shys.class
+com\portfolio\njvp\Dto\DtoPersona.class
 com\portfolio\njvp\Controller\Controller.class
 com\portfolio\njvp\Dto\DtoHys.class
 com\portfolio\njvp\Interface\Experiencia.class
