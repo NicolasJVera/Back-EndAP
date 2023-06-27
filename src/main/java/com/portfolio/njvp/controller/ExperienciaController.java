@@ -1,7 +1,9 @@
 package com.portfolio.njvp.controller;
 
+import com.portfolio.njvp.Dto.DtoExperiencia;
+import com.portfolio.njvp.Security.Controller.Mensaje;
 import com.portfolio.njvp.entity.Experiencia;
-import com.portfolio.njvp.service.IExperienciaService;
+import com.portfolio.njvp.service.ExperienciaService;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,72 +20,72 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("experiencia")
+@RequestMapping("/explab")
+// https://portfolio-frontend-4bf0a.web.app
 @CrossOrigin(origins = {"https://portfolio-frontend-4bf0a.web.app", "http://localhost:4200"})
 public class ExperienciaController {
 
-   @Autowired
-    public IExperienciaService iExperienciaService;
+    @Autowired
+    public ExperienciaService experienciaService;
 
     @GetMapping("/lista")
     public ResponseEntity<List<Experiencia>> list() {
-        List<Experiencia> listaExpe = iExperienciaService.getExperiencia();
-        return new ResponseEntity<>(listaExpe, HttpStatus.OK);
+        List<Experiencia> list = experienciaService.list();
+        return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/traer/{id}")
-    public ResponseEntity<?> mostrarExperiencia(@PathVariable int id) {
-
-        Experiencia expe = iExperienciaService.findExperiencia(id);
-        if (expe == null) {
-            return new ResponseEntity<>("Experiencia no encontrada", HttpStatus.BAD_REQUEST);
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Experiencia> getById(@PathVariable("id") int id) {
+        if (!experienciaService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(expe, HttpStatus.OK);
-    }
-
-    @PostMapping("/crear")
-    public ResponseEntity<?> agregarExperiencia(@RequestBody Experiencia expe) {
-        if (StringUtils.isBlank(expe.getNombreExpe())
-                && StringUtils.isBlank(expe.getDescripcionExpe())
-                && StringUtils.isBlank(expe.getFechainicio())) {
-            return new ResponseEntity<>("Hay campos obligatorios sin completar.", HttpStatus.BAD_REQUEST);
-
-        }
-        iExperienciaService.saveExperiencia(expe);
-        return new ResponseEntity<>(expe, HttpStatus.OK);
-    }
-
-    @PutMapping("/editar/{id}")
-    public ResponseEntity<?> editarExperiencia(@PathVariable int id, @RequestBody Experiencia experiencia) {
-        if (iExperienciaService.findExperiencia(id) == null) {
-            return new ResponseEntity<>("Experiencia no encontrada", HttpStatus.BAD_REQUEST);
-        }
-        if (StringUtils.isBlank(experiencia.getNombreExpe())
-                && StringUtils.isBlank(experiencia.getDescripcionExpe())
-                && StringUtils.isBlank(experiencia.getFechainicio())) {
-            return new ResponseEntity<>("Hay campos obligatorios sin completar.", HttpStatus.BAD_REQUEST);
-        }
-
-        Experiencia experienciaEditada = iExperienciaService.findExperiencia(id);
-
-        experienciaEditada.setNombreExpe(experiencia.getNombreExpe());
-        experienciaEditada.setDescripcionExpe(experiencia.getDescripcionExpe());
-        experienciaEditada.setFechainicio(experiencia.getFechainicio());
-        experienciaEditada.setFechafin(experiencia.getFechafin());
-
-        iExperienciaService.saveExperiencia(experienciaEditada);
-
-        return new ResponseEntity<>(experienciaEditada, HttpStatus.OK);
-    }
-
-    @DeleteMapping("/borrar/{id}")
-    public ResponseEntity<?> borrarExperiencia(@PathVariable int id) {
-
-        if (iExperienciaService.findExperiencia(id) == null) {
-            return new ResponseEntity<>("Experiencia no encontrada", HttpStatus.BAD_REQUEST);
-        }
-        iExperienciaService.deleteExperiencia(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Experiencia experiencia = experienciaService.getOne(id).get();
+        return new ResponseEntity(experiencia, HttpStatus.OK);
     }
     
+        @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!experienciaService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        }
+        experienciaService.delete(id);
+        return new ResponseEntity(new Mensaje("producto eliminado"), HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoexp) {
+        if (StringUtils.isBlank(dtoexp.getNombreE())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+        if (experienciaService.existsByNombreE(dtoexp.getNombreE())) {
+            return new ResponseEntity(new Mensaje("Esa experiencia existe"), HttpStatus.BAD_REQUEST);
+        }
+
+        Experiencia experiencia = new Experiencia(dtoexp.getNombreE(), dtoexp.getDescripcionE());
+        experienciaService.save(experiencia);
+
+        return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
+    }
+
+     @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoExperiencia dtoexp){
+        //Validamos si existe el ID
+        if(!experienciaService.existsById(id))
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+        //Compara nombre de experiencias
+        if(experienciaService.existsByNombreE(dtoexp.getNombreE()) && experienciaService.getByNombreE(dtoexp.getNombreE()).get().getId() != id)
+            return new ResponseEntity(new Mensaje("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
+        //No puede estar vacio
+        if(StringUtils.isBlank(dtoexp.getNombreE()))
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        
+        Experiencia experiencia = experienciaService.getOne(id).get();
+        experiencia.setNombreE(dtoexp.getNombreE());
+        experiencia.setDescripcionE((dtoexp.getDescripcionE()));
+        
+        experienciaService.save(experiencia);
+        return new ResponseEntity(new Mensaje("Experiencia actualizada"), HttpStatus.OK);
+             
+    }
+
 }

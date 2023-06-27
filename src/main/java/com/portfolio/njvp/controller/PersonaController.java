@@ -1,13 +1,17 @@
 package com.portfolio.njvp.controller;
 
+import com.portfolio.njvp.Dto.DtoPersona;
+import com.portfolio.njvp.Security.Controller.Mensaje;
 import com.portfolio.njvp.entity.Persona;
-import com.portfolio.njvp.service.IPersonaService;
+import com.portfolio.njvp.service.PersonaService;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,44 +19,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("persona")
-@CrossOrigin(origins = {"https://portfolio-frontend-4bf0a.web.app", "http://localhost:4200"})
+@RequestMapping("/personas")
+@CrossOrigin(origins = {"https://portfolio-frontend-4bf0a.web.app","http://localhost:4200"})
 public class PersonaController {
-    
+
     @Autowired
-    public IPersonaService iPersonaService;
+    public PersonaService personaService;
 
-    @GetMapping("/traer")
-    public ResponseEntity<?> mostrarUsuario() {
-        Persona persona = iPersonaService.traerPersona();
-        if (persona == null) {
-            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(persona, HttpStatus.OK);
+    @GetMapping("/lista")
+    public ResponseEntity<List<Persona>> list() {
+        List<Persona> list = personaService.list();
+        return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @PostMapping("/crear")
-    public ResponseEntity<?> agregarPersona(@RequestBody Persona perso) {
-        if (StringUtils.isBlank(perso.getNombre())
-                && StringUtils.isBlank(perso.getApellido())
-                && StringUtils.isBlank(perso.getAbout())
-                && StringUtils.isBlank(perso.getTitulo())) {
-            return new ResponseEntity<>("Campos obligatorios vacios", HttpStatus.BAD_REQUEST);
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Persona> getById(@PathVariable("id") int id) {
+        if (!personaService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
         }
-        iPersonaService.savePersona(perso);
-        return new ResponseEntity<>("Persona creada exitosamente", HttpStatus.OK);
-    }
 
-    @PutMapping("/editar")
-    public ResponseEntity<?> editar(@RequestBody Persona persona) {
-        if (StringUtils.isBlank(persona.getNombre())
-                && StringUtils.isBlank(persona.getApellido())
-                && StringUtils.isBlank(persona.getAbout())
-                && StringUtils.isBlank(persona.getTitulo())) {
-            return new ResponseEntity<>("Campos obligatorios vacios", HttpStatus.BAD_REQUEST);
-        }
-        Persona personaEditada = iPersonaService.editarPersona(persona);
-        return new ResponseEntity<>(personaEditada, HttpStatus.OK);
+        Persona persona = personaService.getOne(id).get();
+        return new ResponseEntity(persona, HttpStatus.OK);
     }
     
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtopersona){
+        if(!personaService.existsById(id)){
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
+        }
+        if(personaService.existsByNombre(dtopersona.getNombre()) && personaService.getByNombre(dtopersona.getNombre()).get().getId() != id){
+            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+        }
+        if(StringUtils.isBlank(dtopersona.getNombre())){
+            return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
+        }
+        
+        Persona persona = personaService.getOne(id).get();
+        
+        persona.setNombre(dtopersona.getNombre());
+        persona.setApellido(dtopersona.getApellido());
+        persona.setDescripcion(dtopersona.getDescripcion());
+        persona.setImg(dtopersona.getImg());
+        
+        personaService.save(persona);
+        
+        return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
+    }
 }

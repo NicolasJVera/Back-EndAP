@@ -1,7 +1,9 @@
 package com.portfolio.njvp.controller;
 
+import com.portfolio.njvp.Dto.DtoSkills;
+import com.portfolio.njvp.Security.Controller.Mensaje;
 import com.portfolio.njvp.entity.Skills;
-import com.portfolio.njvp.service.ISkillsService;
+import com.portfolio.njvp.service.SkillsService;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,73 +20,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = {"https://portfolio-frontend-4bf0a.web.app", "http://localhost:4200"})
-@RequestMapping("skills")
+//"http://localhost:4200"
+@CrossOrigin(origins = {"https://portfolio-frontend-4bf0a.web.app","http://localhost:4200"})
+@RequestMapping("/skill")
 public class SkillsController {
 
     @Autowired
-    public ISkillsService iSkillsService;
+    public SkillsService skillsService;
 
     @GetMapping("/lista")
     public ResponseEntity<List<Skills>> mostrarSkills() {
-        List<Skills> listaSkills = iSkillsService.traerSkills();
+        List<Skills> listaSkills = skillsService.list();
         return new ResponseEntity<>(listaSkills, HttpStatus.OK);
     }
 
-    @GetMapping("/traer/{id}")
-    public ResponseEntity<?> mostrarSkillporId(@PathVariable int id) {
-
-        Skills skill = iSkillsService.traerSkillsPorId(id);
-        if (skill == null) {
-            return new ResponseEntity<>("Skill no encontrada", HttpStatus.BAD_REQUEST);
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Skills> getById(@PathVariable("id") int id) {
+        if (!skillsService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(skill, HttpStatus.OK);
+        Skills skills = skillsService.getOne(id).get();
+        return new ResponseEntity(skills, HttpStatus.OK);
     }
 
-    @PostMapping("/crear")
-    public ResponseEntity<?> agregarSkilll(@RequestBody Skills skill) {
-        if (StringUtils.isBlank(skill.getNombreSkill())
-                && StringUtils.isBlank(skill.getImgsrc())
-                && skill.getPorcentaje() <= 0) {
-            return new ResponseEntity<>("Campos obligatorios vacios o incorrectos.", HttpStatus.BAD_REQUEST);
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!skillsService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        iSkillsService.saveSkills(skill);
-        return new ResponseEntity<>(skill, HttpStatus.OK);
+        skillsService.delete(id);
+        return new ResponseEntity(new Mensaje("Skill eliminada"), HttpStatus.OK);
     }
 
-    @PutMapping("/editar/{id}")
-    public ResponseEntity<?> editarSkills(@PathVariable int id, @RequestBody Skills skill) {
-        if (iSkillsService.traerSkillsPorId(id) == null) {
-            return new ResponseEntity<>("Skills no encontrada", HttpStatus.BAD_REQUEST);
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody DtoSkills Dtoskills) {
+        if (StringUtils.isBlank(Dtoskills.getNombre())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(skill.getNombreSkill())
-                && StringUtils.isBlank(skill.getImgsrc())
-                && skill.getPorcentaje() <= 0) {
-
-            return new ResponseEntity<>("Campos obligatorios vacios o incorrectos.", HttpStatus.BAD_REQUEST);
+        if (skillsService.existsByNombre(Dtoskills.getNombre())) {
+            return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
         }
-
-        Skills nuevaSkill = iSkillsService.traerSkillsPorId(id);
-
-        nuevaSkill.setNombreSkill(skill.getNombreSkill());
-        nuevaSkill.setPorcentaje(skill.getPorcentaje());
-        nuevaSkill.setImgsrc(skill.getImgsrc());
-        nuevaSkill.setColorInterno(skill.getColorInterno());
-        nuevaSkill.setColorExterno(skill.getColorExterno());
-
-        iSkillsService.saveSkills(nuevaSkill);
-
-        return new ResponseEntity<>(nuevaSkill, HttpStatus.OK);
+        Skills skills = new Skills(Dtoskills.getNombre(), Dtoskills.getPorcentaje());
+        skillsService.save(skills);
+        return new ResponseEntity(new Mensaje("Skill agregada"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/borrar/{id}")
-    public ResponseEntity<?> borrarSkills(@PathVariable int id) {
-
-        if (iSkillsService.traerSkillsPorId(id) == null) {
-            return new ResponseEntity<>("Skill no encontrada", HttpStatus.NOT_FOUND);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoSkills dtoskills) {
+        if (!skillsService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
-        iSkillsService.deleteSkills(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (skillsService.existsByNombre(dtoskills.getNombre()) && skillsService.getByNombre(dtoskills.getNombre()).get().getId() != id) {
+            return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
+        }
+        if (StringUtils.isBlank(dtoskills.getNombre())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+        Skills skills = skillsService.getOne(id).get();
+        skills.setNombre(dtoskills.getNombre());
+        skills.setPorcentaje(dtoskills.getPorcentaje());
+
+        skillsService.save(skills);
+        return new ResponseEntity(new Mensaje("Skill actualizada"), HttpStatus.OK);
+
     }
 }

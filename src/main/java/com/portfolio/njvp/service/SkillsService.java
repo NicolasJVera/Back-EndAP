@@ -3,36 +3,43 @@ package com.portfolio.njvp.service;
 import com.portfolio.njvp.entity.Skills;
 import com.portfolio.njvp.repository.SkillsRepo;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class SkillsService implements ISkillsService {
+public class SkillsService {
 
     @Autowired
     SkillsRepo skillsRepo;
 
-    @Override
-    public void deleteSkills(int id) {
+    public List<Skills> list() {
+        return skillsRepo.findAll();
+    }
+
+    public Optional<Skills> getOne(int id) {
+        return skillsRepo.findById(id);
+    }
+
+    public Optional<Skills> getByNombre(String nombre) {
+        return skillsRepo.findByNombre(nombre);
+    }
+
+    public void save(Skills educacion) {
+        skillsRepo.save(educacion);
+    }
+
+    public void delete(int id) {
         skillsRepo.deleteById(id);
     }
 
-    @Override
-    public void saveSkills(Skills skill) {
-        skillsRepo.save(skill);   
+    public boolean existsById(int id) {
+        return skillsRepo.existsById(id);
     }
 
-    @Override
-    public List<Skills> traerSkills() {
-        List<Skills> skills = skillsRepo.findAll();
-        return skills;
-    }
-
-    @Override
-    public Skills traerSkillsPorId(int id) {
-        Skills skill = skillsRepo.findById(id).orElse(null);
-        return skill;
+    public boolean existsByNombre(String nombre) {
+        return skillsRepo.existsByNombre(nombre);
     }
 }

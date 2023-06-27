@@ -1,38 +1,35 @@
 package com.portfolio.njvp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Getter
-@Setter
+@Getter @Setter
 @Entity
 public class Proyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotBlank
-    private String nombreProyecto;
-    @NotBlank
-    private String descripcionProyecto;
-    private String imgproyecto;
-    private String linkproyecto;
+    
+    private String nombre;
+    
+    private String descripcion;
+    
+    private String img;
 
     public Proyecto() {
     }
 
-    public Proyecto(@NotBlank String nombreProyecto, @NotBlank String descripcionProyecto, String imgproyecto,
-            String linkproyecto) {
-        this.nombreProyecto = nombreProyecto;
-        this.descripcionProyecto = descripcionProyecto;
-        this.imgproyecto = imgproyecto;
-        this.linkproyecto = linkproyecto;
+    public Proyecto(String nombre, String descripcion, String img) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.img = img;
     }
+    
+    
 }

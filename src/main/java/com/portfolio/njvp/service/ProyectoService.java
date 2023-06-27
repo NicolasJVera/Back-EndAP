@@ -3,37 +3,43 @@ package com.portfolio.njvp.service;
 import com.portfolio.njvp.entity.Proyecto;
 import com.portfolio.njvp.repository.ProyectoRepo;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class ProyectoService implements IProyectoService {
+public class ProyectoService {
 
     @Autowired
     ProyectoRepo proyectoRepo;
 
-    @Override
-    public void deleteProyecto(int id) {
+    public List<Proyecto> list() {
+        return proyectoRepo.findAll();
+    }
+
+    public Optional<Proyecto> getOne(int id) {
+        return proyectoRepo.findById(id);
+    }
+
+    public Optional<Proyecto> getByNombre(String nombre) {
+        return proyectoRepo.findByNombre(nombre);
+    }
+
+    public void save(Proyecto educacion) {
+        proyectoRepo.save(educacion);
+    }
+
+    public void delete(int id) {
         proyectoRepo.deleteById(id);
     }
 
-    @Override
-    public void saveProyecto(Proyecto proyecto) {
-        proyectoRepo.save(proyecto);
-
+    public boolean existsById(int id) {
+        return proyectoRepo.existsById(id);
     }
 
-    @Override
-    public Proyecto traerProyectoPorId(int id) {
-        Proyecto pro = proyectoRepo.findById(id).orElse(null);
-        return pro;
-    }
-
-    @Override
-    public List<Proyecto> traerProyectos() {
-        List<Proyecto> proyectos = proyectoRepo.findAll();
-        return proyectos;
+    public boolean existsByNombre(String nombre) {
+        return proyectoRepo.existsByNombre(nombre);
     }
 }

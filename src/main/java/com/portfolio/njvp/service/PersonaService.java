@@ -2,47 +2,45 @@ package com.portfolio.njvp.service;
 
 import com.portfolio.njvp.entity.Persona;
 import com.portfolio.njvp.repository.PersonaRepo;
+import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 @Transactional
-public class PersonaService implements IPersonaService {
+public class PersonaService {
 
     @Autowired
     PersonaRepo personaRepo;
 
-    @Override
-    public void deletePersona(int id) {
-        personaRepo.deleteById(1);
-
+    public List<Persona> list() {
+        return personaRepo.findAll();
     }
 
-    @Override
-    public Persona editarPersona(Persona nuevaPersona) {
-        Persona persona = personaRepo.findById(1).orElse(null);
-        persona.setNombre(nuevaPersona.getNombre());
-        persona.setApellido(nuevaPersona.getApellido());
-        persona.setImg(nuevaPersona.getImg());
-        persona.setAbout(nuevaPersona.getAbout());
-        persona.setTitulo(nuevaPersona.getTitulo());
-
-        return persona;
+    public Optional<Persona> getOne(int id) {
+        return personaRepo.findById(id);
     }
 
-    @Override
-    public void savePersona(Persona persona) {
-
-        personaRepo.save(persona);
-
+    public Optional<Persona> getByNombre(String nombre) {
+        return personaRepo.findByNombre(nombre);
     }
 
-    @Override
-    public Persona traerPersona() {
-        return personaRepo.getReferenceById(1);
+    public void save(Persona educacion) {
+        personaRepo.save(educacion);
+    }
+
+    public void delete(int id) {
+        personaRepo.deleteById(id);
+    }
+
+    public boolean existsById(int id) {
+        return personaRepo.existsById(id);
+    }
+
+    public boolean existsByNombre(String nombre) {
+        return personaRepo.existsByNombre(nombre);
     }
 }
